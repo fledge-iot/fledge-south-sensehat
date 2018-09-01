@@ -8,6 +8,8 @@
 
 import copy
 import uuid
+import logging
+
 from sense_hat import SenseHat
 
 from foglamp.common import logger
@@ -29,7 +31,7 @@ _DEFAULT_CONFIG = {
         'readonly': 'true'
     },
     'pollInterval': {
-        'description': 'Interval between calls to the South device poll routine in milliseconds',
+        'description': 'Interval between calls to the South plugin poll routine in milliseconds',
         'type': 'integer',
         'default': '1000',
         'order': '1'
@@ -111,10 +113,23 @@ _DEFAULT_CONFIG = {
         'type': 'string',
         'default': 'magnetometer',
         'order': '14'
+    },
+    'joystickSensor': {
+        'description': 'Enable Joystick sensor',
+        'type': 'boolean',
+        'default': 'true',
+        'order': '15'
+    },
+    'joystickSensorName': {
+        'description': 'Asset name of Joystick sensor',
+        'type': 'string',
+        'default': 'joystick',
+        'order': '16'
     }
 }
 
-_LOGGER = logger.setup(__name__, level=20)
+_LOGGER = logger.setup(__name__, level=logging.INFO)
+sense = SenseHat()
 
 
 def plugin_info():
@@ -140,7 +155,7 @@ def plugin_init(config):
     """ Initialise the plugin.
 
     Args:
-        config: JSON configuration document for the South device configuration category
+        config: JSON configuration document for the South plugin configuration category
     Returns:
         handle: JSON object to be used in future calls to the plugin
     Raises:
@@ -162,7 +177,9 @@ def plugin_poll(handle):
     Raises:
         DataRetrievalError
     """
-    sense = SenseHat()
+    def _str_to_bool(s):
+        return True if s == 'true' else False
+
     # The IMU (inertial measurement unit) sensor is a combination of three sensors, each with an x, y and z axis
     # Enables and disables the magnetometer, accelerometer, gyroscope
     sense.set_imu_config(_str_to_bool(handle['magnetometerSensor']['value']),
@@ -220,9 +237,19 @@ def plugin_poll(handle):
                 'key': str(uuid.uuid4()),
                 'readings': accelerometer
             })
-
-    except (Exception, RuntimeError) as ex:
-        _LOGGER.exception("Sense HAT exception: {}".format(str(ex)))
+        if handle['joystickSensor']['value'] == 'true':
+            for event in sense.stick.get_events():
+                data.append({
+                    'asset': '{}{}'.format(asset_prefix, handle['joystickSensorName']['value']),
+                    'timestamp': time_stamp,
+                    'key': str(uuid.uuid4()),
+                    'readings': {"direction": event.direction, "action": event.action}
+                })
+    except RuntimeError as e:
+        _LOGGER.exception("Sense HAT runtime error: %s", e)
+        raise exceptions.DataRetrievalError(e)
+    except Exception as ex:
+        _LOGGER.exception("Sense HAT exception: %s", ex)
         raise exceptions.DataRetrievalError(ex)
 
     return data
@@ -231,7 +258,7 @@ def plugin_poll(handle):
 def plugin_reconfigure(handle, new_config):
     """  Reconfigures the plugin
 
-    it should be called when the configuration of the plugin is changed during the operation of the South device service;
+    it should be called when the configuration of the plugin is changed during the operation of the South plugin service;
     The new configuration category should be passed.
 
     Args:
@@ -248,7 +275,7 @@ def plugin_reconfigure(handle, new_config):
 
 
 def plugin_shutdown(handle):
-    """ Shutdown the plugin doing required cleanup, to be called prior to the South device service being shut down.
+    """ Shutdown the plugin doing required cleanup, to be called prior to the South plugin service being shut down.
 
     Args:
         handle: handle returned by the plugin initialisation call
@@ -256,7 +283,3 @@ def plugin_shutdown(handle):
 
     """
     _LOGGER.info('Sense HAT poll plugin shut down.')
-
-
-def _str_to_bool(s):
-    return True if s == 'true' else False
