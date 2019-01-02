@@ -34,97 +34,113 @@ _DEFAULT_CONFIG = {
         'description': 'Interval between calls to the South plugin poll routine in milliseconds',
         'type': 'integer',
         'default': '1000',
-        'order': '1'
+        'order': '1',
+        'displayName': 'Poll Interval'
     },
     'assetNamePrefix': {
         'description': 'Prefix of asset name',
         'type': 'string',
         'default': 'sensehat/',
-        'order': '2'
+        'order': '2',
+        'displayName': 'Asset Name Prefix'
     },
     'pressureSensor': {
         'description': 'Enable Barometric Pressure sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '3'
+        'order': '3',
+        'displayName': 'Pressure Sensor'
     },
     'pressureSensorName': {
         'description': 'Asset name of Barometric Pressure sensor',
         'type': 'string',
         'default': 'pressure',
-        'order': '4'
+        'order': '4',
+        'displayName': 'Pressure Sensor Name'
     },
     'temperatureSensor': {
         'description': 'Enable Temperature sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '5'
+        'order': '5',
+        'displayName': 'Temperature Sensor'
     },
     'temperatureSensorName': {
         'description': 'Asset name of Temperature sensor',
         'type': 'string',
         'default': 'temperature',
-        'order': '6'
+        'order': '6',
+        'displayName': 'Temperature Sensor Name'
     },
     'humiditySensor': {
         'description': 'Enable Humidity sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '7'
+        'order': '7',
+        'displayName': 'Humidity Sensor'
     },
     'humiditySensorName': {
         'description': 'Asset name of Humidity sensor',
         'type': 'string',
         'default': 'humidity',
-        'order': '8'
+        'order': '8',
+        'displayName': 'Humidity Sensor Name'
     },
     'gyroscopeSensor': {
         'description': 'Enable IMU (inertial measurement unit) gyroscope sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '9'
+        'order': '9',
+        'displayName': 'Gyroscope Sensor'
     },
     'gyroscopeSensorName': {
         'description': 'Asset name of Gyroscope sensor',
         'type': 'string',
         'default': 'gyroscope',
-        'order': '10'
+        'order': '10',
+        'displayName': 'Gyroscope Sensor Name'
     },
     'accelerometerSensor': {
         'description': 'Enable IMU (inertial measurement unit) accelerometer sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '11'
+        'order': '11',
+        'displayName': 'Accelerometer Sensor'
     },
     'accelerometerSensorName': {
         'description': 'Asset name of accelerometer sensor',
         'type': 'string',
         'default': 'accelerometer',
-        'order': '12'
+        'order': '12',
+        'displayName': 'Accelerometer Sensor Name'
     },
     'magnetometerSensor': {
         'description': 'Enable IMU (inertial measurement unit) magnetometer/compass sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '13'
+        'order': '13',
+        'displayName': 'Magnetometer Sensor'
     },
     'magnetometerSensorName': {
         'description': 'Asset name of magnetometer sensor',
         'type': 'string',
         'default': 'magnetometer',
-        'order': '14'
+        'order': '14',
+        'displayName': 'Magnetometer Sensor Name'
     },
     'joystickSensor': {
         'description': 'Enable Joystick sensor',
         'type': 'boolean',
         'default': 'true',
-        'order': '15'
+        'order': '15',
+        'displayName': 'Joystick Sensor'
     },
     'joystickSensorName': {
         'description': 'Asset name of Joystick sensor',
         'type': 'string',
         'default': 'joystick',
-        'order': '16'
+        'order': '16',
+        'displayName': 'Joystick Sensor Name'
     }
 }
 
