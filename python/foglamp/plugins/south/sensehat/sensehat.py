@@ -30,13 +30,6 @@ _DEFAULT_CONFIG = {
         'default': 'sensehat',
         'readonly': 'true'
     },
-    'pollInterval': {
-        'description': 'Interval between calls to the South plugin poll routine in milliseconds',
-        'type': 'integer',
-        'default': '1000',
-        'order': '1',
-        'displayName': 'Poll Interval'
-    },
     'assetNamePrefix': {
         'description': 'Prefix of asset name',
         'type': 'string',
@@ -286,7 +279,6 @@ def plugin_reconfigure(handle, new_config):
     _LOGGER.info("Old config for Sense HAT plugin {} \n new config {}".format(handle, new_config))
 
     new_handle = copy.deepcopy(new_config)
-    new_handle['restart'] = 'no'
     return new_handle
 
 
