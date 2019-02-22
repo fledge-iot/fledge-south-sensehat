@@ -14,7 +14,6 @@ from sense_hat import SenseHat
 
 from foglamp.common import logger
 from foglamp.plugins.common import utils
-from foglamp.services.south import exceptions
 
 
 __author__ = "Ashish Jabble"
@@ -256,10 +255,10 @@ def plugin_poll(handle):
                 })
     except RuntimeError as e:
         _LOGGER.exception("Sense HAT runtime error: %s", e)
-        raise exceptions.DataRetrievalError(e)
+        raise e
     except Exception as ex:
         _LOGGER.exception("Sense HAT exception: %s", ex)
-        raise exceptions.DataRetrievalError(ex)
+        raise ex
 
     return data
 
