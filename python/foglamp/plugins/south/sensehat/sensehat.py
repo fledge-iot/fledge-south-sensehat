@@ -152,7 +152,7 @@ def plugin_info():
 
     return {
         'name': 'Sense HAT Poll Plugin',
-        'version': '1.0',
+        'version': '1.5.0',
         'mode': 'poll',
         'type': 'south',
         'interface': '1.0',
