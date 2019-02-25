@@ -14,7 +14,6 @@ from sense_hat import SenseHat
 
 from foglamp.common import logger
 from foglamp.plugins.common import utils
-from foglamp.services.south import exceptions
 
 
 __author__ = "Ashish Jabble"
@@ -184,7 +183,7 @@ def plugin_poll(handle):
         returns a sensor reading in a JSON document, as a Python dict, if it is available
         None - If no reading is available
     Raises:
-        DataRetrievalError
+        Exception
     """
     def _str_to_bool(s):
         return True if s == 'true' else False
@@ -256,12 +255,12 @@ def plugin_poll(handle):
                 })
     except RuntimeError as e:
         _LOGGER.exception("Sense HAT runtime error: %s", e)
-        raise exceptions.DataRetrievalError(e)
+        raise e
     except Exception as ex:
         _LOGGER.exception("Sense HAT exception: %s", ex)
-        raise exceptions.DataRetrievalError(ex)
-
-    return data
+        raise ex
+    else:
+        return data
 
 
 def plugin_reconfigure(handle, new_config):
