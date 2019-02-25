@@ -183,7 +183,7 @@ def plugin_poll(handle):
         returns a sensor reading in a JSON document, as a Python dict, if it is available
         None - If no reading is available
     Raises:
-        DataRetrievalError
+        Exception
     """
     def _str_to_bool(s):
         return True if s == 'true' else False
@@ -259,8 +259,8 @@ def plugin_poll(handle):
     except Exception as ex:
         _LOGGER.exception("Sense HAT exception: %s", ex)
         raise ex
-
-    return data
+    else:
+        return data
 
 
 def plugin_reconfigure(handle, new_config):
