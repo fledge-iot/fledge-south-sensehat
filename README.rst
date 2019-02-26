@@ -22,10 +22,10 @@ Installing the software:
 
 It is always recommended using the most up-to-date version of Raspbian, and it often helps to start with a completely fresh install of Raspbian, although this isn't necessary.
 
-Please use below commands to get your Sense HAT set up.
+The plugin can be installed with given `requirements.sh <requirements.sh>`_ or the following steps:
 
 ::
 
-           sudo apt-get install sense-hat
+           sudo apt install -y sense-hat
 
 Once that's done, it's probably a good idea to reboot your Pi to let the changes propagate.
