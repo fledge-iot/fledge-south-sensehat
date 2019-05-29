@@ -3,6 +3,3 @@
 
 # IDE
 *.idea
-
-# Package Build
-packages/build
