@@ -28,4 +28,23 @@ The plugin can be installed with given `requirements.sh <requirements.sh>`_ or t
 
            sudo apt install -y sense-hat
 
-Once that's done, it's probably a good idea to reboot your Pi to let the changes propagate.
+
+Also it is required to enable I2C on the RPi, please do the following steps:
+1) sudo raspi-config
+2) Choose Interfacing options
+3) Choose P5I2C option Enable/Disable automatic loading of I2C Kernel module
+4) Follow the prompt to set Yes for ARM I2C interface enabled
+5) Once that's done, reboot your RPi to let the changes propagate.
+6) And with below command be ensure that your I2C is enabled
+
+::
+
+            ls /dev/*i2c*
+
+For more help, please visit https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
+
+Or a simple alternative approach to enable I2C is:
+
+1) Download script via wget https://get.pimoroni.com/i2c
+2) sudo bash i2c
+3) sudo reboot
