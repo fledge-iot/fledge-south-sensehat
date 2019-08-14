@@ -2,7 +2,7 @@ It is required to enable I2C on the RPi, please do the following steps:
 
 1) sudo raspi-config
 2) Choose Interfacing options
-3) Choose P5I2C option Enable/Disable automatic loading of I2C Kernel module
+3) Choose P5 I2C option Enable/Disable automatic loading of I2C Kernel module
 4) Follow the prompt to set Yes for ARM I2C interface enabled
 5) Once that's done, reboot your RPi to let the changes propagate.
 6) And be ensure that your I2C is enabled, run command ls /dev/*i2c*
