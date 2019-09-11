@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# FOGLAMP_BEGIN
-# See: http://foglamp.readthedocs.io/
-# FOGLAMP_END
+# FLEDGE_BEGIN
+# See: http://fledge.readthedocs.io/
+# FLEDGE_END
 
 """ Module for Sense HAT 'poll' type plugin """
 
@@ -12,8 +12,8 @@ import logging
 
 from sense_hat import SenseHat
 
-from foglamp.common import logger
-from foglamp.plugins.common import utils
+from fledge.common import logger
+from fledge.plugins.common import utils
 
 
 __author__ = "Ashish Jabble"

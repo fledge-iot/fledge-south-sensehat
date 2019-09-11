@@ -1,4 +1,4 @@
-foglamp-south-sensehat
+fledge-south-sensehat
 ========================
 
 South Plugin for Raspberry PI Sense HAT
