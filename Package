@@ -12,21 +12,19 @@ requirements="foglamp,sense-hat"
 
 case "$arch" in
 	x86_64)
-		;;
-	armhf)
-		;;
+	        echo "${plugin_name} is not supported on Intel architectures as it requires ARM support"
+	        exit 1
+	        ;;
+	armv7l)
+                ;;
 	aarch64)
-		;;
+                ;;
 esac
 case "$package_manager" in
-	deb)
-	    if [ "$arch" != "armhf" ]; then
-	        echo "Deb Package building for ${plugin_name} is only supported on armhf architecture!!"
-	        exit 0
-	    fi
-	    ;;
-	rpm)
-	    echo "RPM Package building for ${plugin_name} is not supported on $arch architecture!!"
-	    exit 0
-	    ;;
+    deb)
+        ;;
+    rpm)
+        echo "RPM Package building for ${plugin_name} is not supported on $arch architecture!!"
+        exit 0
+        ;;
 esac
