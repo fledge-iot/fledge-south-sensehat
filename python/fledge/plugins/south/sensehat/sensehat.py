@@ -7,7 +7,6 @@
 """ Module for Sense HAT 'poll' type plugin """
 
 import copy
-import uuid
 import logging
 
 from sense_hat import SenseHat
@@ -202,7 +201,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': '{}{}'.format(asset_prefix, handle['pressureSensorName']['value']),
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {"pressure": pressure}
             })
         if handle['temperatureSensor']['value'] == 'true':
@@ -210,7 +208,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': '{}{}'.format(asset_prefix, handle['temperatureSensorName']['value']),
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {"temperature": temperature}
             })
         if handle['humiditySensor']['value'] == 'true':
@@ -218,7 +215,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': '{}{}'.format(asset_prefix, handle['humiditySensorName']['value']),
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': {"humidity": humidity}
             })
         if handle['magnetometerSensor']['value'] == 'true':
@@ -226,7 +222,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': '{}{}'.format(asset_prefix, handle['magnetometerSensorName']['value']),
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': magnetometer
             })
         if handle['gyroscopeSensor']['value'] == 'true':
@@ -234,7 +229,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': '{}{}'.format(asset_prefix, handle['gyroscopeSensorName']['value']),
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': gyroscope
             })
         if handle['accelerometerSensor']['value'] == 'true':
@@ -242,7 +236,6 @@ def plugin_poll(handle):
             data.append({
                 'asset': '{}{}'.format(asset_prefix, handle['accelerometerSensorName']['value']),
                 'timestamp': time_stamp,
-                'key': str(uuid.uuid4()),
                 'readings': accelerometer
             })
         if handle['joystickSensor']['value'] == 'true':
@@ -250,7 +243,6 @@ def plugin_poll(handle):
                 data.append({
                     'asset': '{}{}'.format(asset_prefix, handle['joystickSensorName']['value']),
                     'timestamp': time_stamp,
-                    'key': str(uuid.uuid4()),
                     'readings': {"direction": event.direction, "action": event.action}
                 })
     except RuntimeError as e:
