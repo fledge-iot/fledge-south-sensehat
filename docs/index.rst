@@ -1,5 +1,5 @@
 .. Images
-.. |sensehat| image:: images/sensehat.jpg
+.. |sensehat_1| image:: images/sensehat.jpg
 
 SenseHAT
 ========
